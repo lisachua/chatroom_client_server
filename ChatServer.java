@@ -3,7 +3,7 @@ import java.util.Vector;
 import java.net.Socket;
 import java.net.ServerSocket;
 
-public class ChattyChatChatServer {
+public class ChatServer {
 	
     // vector to store active clients 
     static Vector<ClientHandler> clientList = new Vector<>(); 
@@ -64,7 +64,7 @@ public class ChattyChatChatServer {
 	} // END function main
 	
 
-} // END class ChattyChatChatServer
+} // END class ChatChatServer
 
 
 
@@ -118,19 +118,19 @@ class ClientHandler extends Thread {
 	                    this.isActive = false;
 	                    
 	                    // remove client object from clientList
-	        	        int clientIndex = ChattyChatChatServer.clientList.
+	        	        int clientIndex = ChatServer.clientList.
 	        	        		indexOf(this);
 
 	        	        if (clientIndex != -1) {
-	        	        	ChattyChatChatServer.clientList.removeElementAt
+	        	        	ChatServer.clientList.removeElementAt
 	        	        	(clientIndex);
-	        	        	ChattyChatChatServer.numberClients--;
+	        	        	ChatServer.numberClients--;
 	        	        	System.out.println("Client removed from list."); 
 	        	        }
 	        	        // final message to server
 	                    System.out.println("Connection closed. " +
 	                    				"Active clients: " + 
-	                    				ChattyChatChatServer.numberClients ); 
+	                    				ChatServer.numberClients ); 
 	                    break; 
 	                } 
 	                else if(received.contains("/nick ")) {
@@ -202,7 +202,7 @@ class ClientHandler extends Thread {
 	    	//boolean recipientFound = false;
 	    	
 	        // search for recipient in vector storing active clients 
-	        for (ClientHandler mc : ChattyChatChatServer.clientList)  
+	        for (ClientHandler mc : ChatServer.clientList)  
 	        { 
 	            // if the recipient is found, write on its output stream 
 	            if (mc.nickName.equals(recipient) && mc.isActive == true )  
@@ -218,7 +218,7 @@ class ClientHandler extends Thread {
 	    // blastToOthers method
 	    synchronized void blastToOthers(String r) {
 	    	// loop through clients on vector of active clients
-	    	for (ClientHandler mc : ChattyChatChatServer.clientList)  
+	    	for (ClientHandler mc : ChatServer.clientList)  
 	        { 
 	            // if the client is NOT the sender, write to its output stream
 	            if (mc.nickName != this.nickName && mc.isActive == true )  
@@ -229,7 +229,7 @@ class ClientHandler extends Thread {
 	        } // END enhanced for loop through vector of active clients
 	        
 	    	
-	    	 //for (int i=0; i<ChattyChatChatServer.clientList.size(); i++) {
+	    	 //for (int i=0; i<ChatServer.clientList.size(); i++) {
 		       
 	    } // END blastToOthers method
 	    

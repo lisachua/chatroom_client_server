@@ -3,7 +3,7 @@ import java.io.*;
 import java.net.Socket;
 
 
-public class ChattyChatChatClient {
+public class ChatClient {
 	
 	// function main
 	public static void main( String[] args ) throws IOException  { 
@@ -47,5 +47,5 @@ public class ChattyChatChatClient {
 		
     } // END function main
          
-} // END class ChattyChatClient
+} // END class ChatClient
 
